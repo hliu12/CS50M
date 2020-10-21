@@ -1,0 +1,39 @@
+Notes from Lecture 4 - Lists, User Inputs
+
+const addKeyToContact = (contact, key) => ({
+    key: key,
+    name: contact.name,
+    phone: contact.phone,
+})
+
+Can be shorthanded with object destructuring
+
+const addKeyToContact = (obj, key) => ({key: key, ...obj})
+
+... passes all key value pairs of an object
+
+Can use state {} instead of making a constructor just to create states
+
+The map function takes an array and a function and runs the function
+on every member of the array, returning the result of the function ran
+into a new array.
+
+keys are very helpful for React to figure out how to add new elements
+to a list. It is good practice to assign a key to each value in a list.
+
+Stateless Functional Components are a good way to clean up code, they 
+can also be abstracted into their own files. Allows SFCs to be reused
+across various files.
+
+To do conditional displaying, use {this.state.bool && (codethatdisplays)}
+
+ScrollView must render all its children first, FlatList renders the data
+in view only, but states are messed up.
+
+FlatList takes a renderItem function and data
+It only updates when props are changed - create a new array to see changes
+
+SectionList - holds data in sections
+takes renderItem, renderSectionHeader, sections(contains title and data)
+
+PropTypes is a useful import to keep track of the prop types in a component
