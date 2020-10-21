@@ -1,0 +1,20 @@
+Lecture 5 Notes
+CS50 Mobile 
+
+By doing +"string", it tries to convert it to a number
+
+It is better to do expensive computations in the update cycle and
+have them represented in state rather than do it in the virtual DOM
+as users will have to wait for a potentially slow operation to finish
+to see the UI
+
+KeyboardAvoidingView can help with keyboard blocking important info
+It's better for short/simple forms
+
+[key] will take the value of key and convert it to a string
+
+Debugging is very important - Chrome js console is very good at 
+doing this
+
+React-native developer tools is also very good since it makes playing
+around with layout editing easy too.
