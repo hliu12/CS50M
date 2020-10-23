@@ -1,0 +1,40 @@
+Lec 6 - Navigation
+CS50 Mobile App Development with React Native
+
+2 approaches to navigation: 
+Do it all in JS - what React Native does
+Write native codee
+
+createSwitchNavigator switches between 2 screens
+takes key-value pairs of route names and screen components
+
+const AppNavigator = createSwitchNavigator({
+    "RouteNameOne": ScreenComponentOne;
+    "RouteNameTwo": ScreenComponentTwo;
+})
+
+class ScreenComponentOne extends React.Component {
+    render() {
+        <Text>This is screen one </Text>
+    }
+}
+
+class ScreenComponentTwo extends React.Component {
+    render() {
+        <Text>This is screen two </Text>
+    }
+}
+
+default class App extends React.Component {
+    render() {
+        return <AppNavigator />;
+    }
+}
+
+stackNavigator is a navigation system that pushes screens onto the 
+stack so that popping screens off and going back to the previous
+screen is simple and has its state and components already loaded
+
+tabNavigation takes care of navigation between tabs and allows
+navigation units to be children of main navigators to save multiple
+navigation flows within the same app.
