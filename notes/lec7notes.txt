@@ -1,0 +1,36 @@
+Lecture 7 - Data
+CS50 Mobile
+
+API - Application Programming Interface
+
+React components have APIs - you pass them propos
+A class has an API - functions ect.
+Need to read docs to understand how to use API
+
+fetch() - used for getting web requests, returns a promise
+The promise returns API info, which can be parsed into a json 
+object 
+
+fetch is often an async function that awaits the response from 
+the promise so that it does not hold up the rest of the page/program
+
+Since async functions don't have a .catch(), we can use try/catch
+
+try {
+    const response = await fetch('[API URL]');
+    const result = await response.json();
+    console.log(result);
+} catch (err) {
+    console.log(err);
+}
+
+can use componentDidMount to send out fetch request, we don't want
+the request to hold up the application
+
+Data coming from API is not always in the desired shape, and 
+transformation is often needed. This transformation should be done
+as early as possible. This creates an abstraction barrier - the 
+rest of our app doesn't care about how we got the data.
+
+POST requests allow a post body to abstract data away from the
+URL.
