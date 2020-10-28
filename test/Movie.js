@@ -13,7 +13,7 @@ const Movie = props => (
   </TouchableOpacity>
 )
 
-Row.propTypes = {
+Movie.propTypes = {
   Title: PropTypes.string,
   Year: PropTypes.string,
   Type: PropTypes.string,

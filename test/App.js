@@ -22,12 +22,21 @@ const Tab = createBottomTabNavigator();
 // Represents the stack shown on the search screen
 function SearchStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Movie Search" component={MovieSearchScreen} />
+    <Stack.Navigator 
+    // screenOptions={{
+    //   header: ()=> null,
+    // }} 
+    initialRouteName="Movie Search">
+      <Stack.Screen options={{
+        headerTitle: "Search",
+      }} 
+      name="Movie Search" 
+      component={MovieSearchScreen} />
       <Stack.Screen name="Movie Details" component={MovieDetailsScreen} />
     </Stack.Navigator>
   )
 }
+
 
 // Contains the higher level navigation structure of the App
 export default class App extends React.Component {

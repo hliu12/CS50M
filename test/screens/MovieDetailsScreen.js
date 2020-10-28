@@ -2,18 +2,26 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
+export default class MovieDetailsScreen extends React.Component { 
+    // static navigationOptions = ({navigation}) => ({
+    //     headerTitle: 'Movie Details',
+    // })
 
-
-function MovieDetailsScreen({ navigation }) {
-    return (
-      <View style={styles.container}>
-        <Text>Details Screen</Text>
-        <Button
-          title="Go to Details... again"
-          onPress={() => navigation.push('Movie Details')}
-          />
-      </View>
-    );
+    render() {
+        this.props.navigation.setOptions({
+            headerTitle: "Test Title",
+        })
+     
+        return (
+            <View style={styles.container}>
+              <Text>Details Screen</Text>
+              <Button
+                title="Go to Details... again"
+                onPress={() => this.props.navigation.push('Movie Details')}
+                />
+            </View>
+          );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -24,4 +32,3 @@ const styles = StyleSheet.create({
     },
 });
 
-export default MovieDetailsScreen;
