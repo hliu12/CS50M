@@ -14,11 +14,7 @@ export default class MovieDetailsScreen extends React.Component {
      
         return (
             <View style={styles.container}>
-              <Text>Details Screen</Text>
-              <Button
-                title="Go to Details... again"
-                onPress={() => this.props.navigation.push('Movie Details')}
-                />
+              <Text>Movie Details Screen</Text>
             </View>
           );
     }
