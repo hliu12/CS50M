@@ -5,6 +5,6 @@ and view additional information about any movies they select. Built with React N
 Expo in October 2020.
 
 ## Screenshots
-![Alt text](./assets/home.PNG?raw=true =200x "Search Homepage")
+![Alt text](./assets/home.PNG?raw=true =200x)
 ![Alt text](./assets/search.PNG?raw=true "Search Results Page")
 ![Alt text](./assets/details.PNG?raw=true "Movie Details Page")
