@@ -5,6 +5,6 @@ and view additional information about any movies they select. Built with React N
 Expo in October 2020.
 
 ## Screenshots
-![Alt text](/assets/home.png?raw=true){:width="100px"}
-![Alt text](/assets/search.png?raw=true){:width="100px"}
-![Alt text](/assets/details.png?raw=true){:width="100px"}
+![Alt text](/assets/home.PNG?raw=true){:width="100px"}
+![Alt text](/assets/search.PNG?raw=true){:width="100px"}
+![Alt text](/assets/details.PNG?raw=true){:width="100px"}
