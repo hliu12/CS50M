@@ -20,6 +20,7 @@ const Tab = createBottomTabNavigator();
 function SearchStack() {
   return (
     <Stack.Navigator 
+    // This would remove the header
     // screenOptions={{
     //   header: ()=> null,
     // }} 
@@ -32,6 +33,7 @@ function SearchStack() {
       component={MovieSearchScreen}
       />
       <Stack.Screen 
+      // This sets the header of the DetailsScreen to the movie name
       // options={({route}) => ({
       //   headerTitle: `${route.params.Title}`
       // })}
@@ -45,15 +47,13 @@ function SearchStack() {
 
 // Contains the higher level navigation structure of the App
 export default class App extends React.Component {
-  state = {
-    number: 2,
-  }
   render() {
     return (
       <NavigationContainer>
         <Tab.Navigator
+          // Handles tab bar Icons and color
           screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
+            tabBarIcon: ({ color, size }) => {
               let iconName;
               if (route.name === 'Search') {
                 iconName = 'ios-search'

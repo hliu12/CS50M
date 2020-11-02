@@ -1,4 +1,3 @@
-// Movie Search Screen
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList} from 'react-native';
 import Movie from '.././Movie.js'
@@ -9,6 +8,7 @@ export default class MovieSearchScreen extends React.Component {
     state = {
         movieList: [],
         query: '',
+        page: 1,
     }
 
     // Navigates to Movie Details page when a movie is selected
@@ -25,14 +25,34 @@ export default class MovieSearchScreen extends React.Component {
 
     // Contacts API to update movieList state based on search query
     searchMovies = async () => {
-        const movies = await fetchMovies(this.state.query);
-        this.setState({movieList: movies});
+        // Must await this reset before calling API
+        await this.setState({
+            page: 1,
+            movieList: [],
+        })
+        const movies = await fetchMovies(this.state.query, this.state.page);
+        // Updates movieList if a result is found
+        movies ?
+        this.setState({movieList: movies}) :
+        alert("Movies not found: Check your spelling or try a more specific search");
+    }
+
+    // Gets more movies when scrolling
+    getMoreMovies = async () => {
+        // Update page number to get new data, important to await this before 
+        // fetching data from API
+        await this.setState(prevState => {return {page: prevState.page + 1}})
+        const movies = await fetchMovies(this.state.query, this.state.page);
+        movies ?
+        this.setState({movieList: [...this.state.movieList, ...movies]}) :
+        null
     }
     
     // Testing function that logs state
     listState = () => {
         console.log(this.state.movieList);
         console.log(this.state.query);
+        console.log(this.state.page)
     }
 
     // Renders a movie by using custom Movie componenet
@@ -54,18 +74,19 @@ export default class MovieSearchScreen extends React.Component {
                     onPress={this.searchMovies}
                     />
                 </View>
-
-                {this.state.movieList.length > 0 ? 
+                
+                {this.state.movieList.length > 1 ? 
                     <FlatList 
                     keyExtractor={(item) => item.imdbID}
                     data={this.state.movieList}
                     renderItem={this.renderMovie}
+                    onEndReached={this.getMoreMovies}
                     />
                 :
                     <View style={styles.center}>
                         <Ionicons
                         name="ios-search"
-                        size= "200"
+                        size= {200}
                         color="lightgray"
                         />
                         <Text>Search Movies To See Results</Text>

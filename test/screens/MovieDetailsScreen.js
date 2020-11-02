@@ -1,10 +1,11 @@
-// MovieDetailsScreen - Contains information about a specific movie
 import React from 'react';
 import { StyleSheet, Text, View, Button, Image, ScrollView } from 'react-native';
 import { fetchById } from '../api';
 import {capitalize} from '../Movie'
 
 export default class MovieDetailsScreen extends React.Component { 
+    // It is important to use {} rather than null or undefined
+    // since empty object doesn't error in the first render cycle
     state = {
         movie: {},
     }
@@ -17,10 +18,14 @@ export default class MovieDetailsScreen extends React.Component {
         this.setState({movie: result});
     }
 
+    // Waits for component to mount before fetching movie details
     componentDidMount() {
         this.findMovie();
     }
 
+    // Displays ratings with icons and rating info
+    // Rating backgrounds and color are always green because
+    // I'm too lazy to actually make them reflect the score
     displayRatings = (rating) => {
         let desc = rating.Source;
         let num = rating.Value;
@@ -39,11 +44,13 @@ export default class MovieDetailsScreen extends React.Component {
             imgURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Metacritic.svg/768px-Metacritic.svg.png";
         }
         return(
-            <View style={styles.ratingBlock}>
+            // It is important for children of a .map function to have 
+            // a key apparently
+            <View key={rating.Source} style={styles.ratingBlock}>
                 <View style={styles.ratingView}>
                     <Text style={styles.ratingText}>{num}</Text>
                 </View>
-                <Image 
+                <Image
                 style={styles.ratingLogo}
                 source={{uri: `${imgURL}`}}
                 />
@@ -95,9 +102,7 @@ export default class MovieDetailsScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        // alignItems: 'center', 
-    }, title: {
+    title: {
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 30,
@@ -119,6 +124,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         fontWeight: 'bold',
         fontSize: 15,
+        textAlign: 'center',
     },
     plot: {
         margin: 10,
