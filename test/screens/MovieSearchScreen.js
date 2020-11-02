@@ -1,17 +1,17 @@
 // Movie Search Screen
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList} from 'react-native';
-import {movie, movee} from '.././mockData.js'
 import Movie from '.././Movie.js'
 import { fetchMovies } from '../api.js';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 export default class MovieSearchScreen extends React.Component { 
     state = {
-        movieList: [movie, movee],
+        movieList: [],
         query: '',
     }
 
-
+    // Navigates to Movie Details page when a movie is selected
     onSelectMovie = movie => {
         this.props.navigation.push('Movie Details', movie);
     }
@@ -35,6 +35,7 @@ export default class MovieSearchScreen extends React.Component {
         console.log(this.state.query);
     }
 
+    // Renders a movie by using custom Movie componenet
     renderMovie = ({item}) => {
         return <Movie {...item} onSelectMovie={this.onSelectMovie} />
     };
@@ -54,12 +55,22 @@ export default class MovieSearchScreen extends React.Component {
                     />
                 </View>
 
-                <FlatList 
-                keyExtractor={(item) => item.imdbID}
-                data={this.state.movieList}
-                renderItem={this.renderMovie}
-                />
-                
+                {this.state.movieList.length > 0 ? 
+                    <FlatList 
+                    keyExtractor={(item) => item.imdbID}
+                    data={this.state.movieList}
+                    renderItem={this.renderMovie}
+                    />
+                :
+                    <View style={styles.center}>
+                        <Ionicons
+                        name="ios-search"
+                        size= "200"
+                        color="lightgray"
+                        />
+                        <Text>Search Movies To See Results</Text>
+                    </View>
+                }
                 {/* <Button onPress={this.listState}/> */}
             </View>
         );
@@ -85,4 +96,9 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2,
         borderColor: 'black',
     }, 
+    center: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
 });

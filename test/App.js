@@ -51,7 +51,24 @@ export default class App extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+              if (route.name === 'Search') {
+                iconName = 'ios-search'
+              } else if (route.name === 'Settings') {
+                iconName = 'ios-settings'
+              }
+              // You can return any component that you like here!
+              return <Ionicons name={iconName} size={size} color={color} />
+            },
+          })}
+          tabBarOptions={{
+            activeTintColor: '#FE7E7E',
+            inactiveTintColor: 'gray',
+          }}
+        >
           <Tab.Screen name="Search" component={SearchStack} />
           <Tab.Screen name="Settings" component={SettingsScreen} />
         </Tab.Navigator>
