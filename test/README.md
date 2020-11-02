@@ -6,5 +6,5 @@ Expo in October 2020.
 
 ## Screenshots
 ![Alt text](https://github.com/hliu12/CS50M/blob/master/test/assets/home.jpg?raw=true){:width="100px"}
-![Alt text](/assets/search.PNG?raw=true){:width="100px"}
+![Alt text](./assets/search.PNG?raw=true){:width="100px"}
 ![Alt text](/assets/details.PNG?raw=true){:width="100px"}
