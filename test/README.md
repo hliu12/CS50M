@@ -6,7 +6,7 @@ Expo in October 2020.
 
 ## Screenshots
 <div style="flex:1">
-  <img style="flex:1" src="./assets/home.PNG" alt="home" width="350" />
-  <img style="flex:1" src="./assets/search.PNG" alt="search" width="350" />
-  <img style="flex:1" src="./assets/details.PNG" alt="details" width="350" />
+  <img style="flex:1" src="./assets/home.PNG" alt="home" width="333" />
+  <img style="flex:1" src="./assets/search.PNG" alt="search" width="333" />
+  <img style="flex:1" src="./assets/details.PNG" alt="details" width="333" />
 <div>
