@@ -1,5 +1,4 @@
 import 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Button, Settings } from 'react-native';
 // Import icons from Ionicons
@@ -13,8 +12,6 @@ import SettingsScreen from './screens/SettingsScreen';
 import MovieSearchScreen from './screens/MovieSearchScreen';
 import MovieDetailsScreen from './screens/MovieDetailsScreen';
 
-import {movie} from './mockData';
-
 // Creating stack and tab navigators
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -27,12 +24,20 @@ function SearchStack() {
     //   header: ()=> null,
     // }} 
     initialRouteName="Movie Search">
-      <Stack.Screen options={{
+      <Stack.Screen 
+      options={{
         headerTitle: "Search",
       }} 
       name="Movie Search" 
-      component={MovieSearchScreen} />
-      <Stack.Screen name="Movie Details" component={MovieDetailsScreen} />
+      component={MovieSearchScreen}
+      />
+      <Stack.Screen 
+      // options={({route}) => ({
+      //   headerTitle: `${route.params.Title}`
+      // })}
+      name="Movie Details" 
+      component={MovieDetailsScreen} 
+      />
     </Stack.Navigator>
   )
 }

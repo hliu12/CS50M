@@ -1,20 +1,52 @@
 // MovieDetailsScreen - Contains information about a specific movie
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { fetchById } from '../api';
+import {capitalize} from '../Movie'
 
 export default class MovieDetailsScreen extends React.Component { 
-    // static navigationOptions = ({navigation}) => ({
-    //     headerTitle: 'Movie Details',
-    // })
+    state = {
+        movie: {},
+    }
 
-    render() {
-        this.props.navigation.setOptions({
-            headerTitle: "Test Title",
-        })
-     
+    // Without awaiting the result, a fulfilled promise is returned
+    // instead of the movie object. WHYY??
+    findMovie = async () => {
+        const movie = this.props.route.params;
+        const result = await fetchById(movie.imdbID);
+        this.setState({movie: result});
+    }
+
+    componentDidMount() {
+        this.findMovie();
+    }
+
+    // Testing fuction
+    listState = () => {
+        console.log(this.state.movie);
+    }
+
+    render() { 
+        const movie = this.state.movie;
         return (
             <View style={styles.container}>
-              <Text>Movie Details Screen</Text>
+                <Text style={styles.title}>{movie.Title} ({movie.Year})</Text>
+                <Image
+                style={styles.poster}
+                source={{uri: `${movie.Poster}`}}
+                />
+                <Text>
+                    {capitalize(movie.Type)} | {movie.Genre} | {movie.Rated}
+                </Text>
+
+                <Text>{movie.Plot}</Text>
+                <Text>{`
+                    Director: ${movie.Director} 
+                    Starring: ${movie.Actors}
+                    Region: ${movie.Country}
+                    Language: ${movie.Language}
+                    Runtime: ${movie.Runtime}
+                `}</Text>
             </View>
           );
     }
@@ -22,9 +54,16 @@ export default class MovieDetailsScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1, 
         alignItems: 'center', 
-        justifyContent: 'center'
+    }, title: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 30,
     },
+    poster: {
+        width: 200,
+        height: 300,
+    }
+
 });
 
