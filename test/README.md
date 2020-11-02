@@ -5,6 +5,8 @@ and view additional information about any movies they select. Built with React N
 Expo in October 2020.
 
 ## Screenshots
-<img src="./assets/home.PNG" alt="home" width="300"/>
-<img src="./assets/search.PNG" alt="search" width="300"/>
-<img src="./assets/details.PNG" alt="details" width="300"/>
+<div style="flex:1">
+  <img src="./assets/home.PNG" alt="home" width="300"/>
+  <img src="./assets/search.PNG" alt="search" width="300"/>
+  <img src="./assets/details.PNG" alt="details" width="300"/>
+<div>
