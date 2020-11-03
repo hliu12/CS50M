@@ -1,0 +1,43 @@
+Lec 8 - Expo Components
+CS50 Mobile
+
+Expo has a lot of built in components available for use
+ALl of these are well documented on expo docs
+
+One of these is Expo.MapView, which brings up a map
+using location permissions.
+
+The map has functionality to display markers and 
+there is also geolocation lookup to find coordinates
+of addresses. There is also a reverse geolocation 
+functionality that finds where you are based off 
+your location.
+
+There is also functionality for using your contacts
+given the permissions.
+
+Expo can also use your phone's magnetometer to get
+directional information
+
+All this information that can be taken from expo
+DeviceMotion
+
+Remember to remove the listeners on unmount so that
+it doesn't clog up processing power
+
+Expo also handles media like Sounds and Videos,
+can use <Expo.Video> to import vids
+
+Can use camera and photo library
+
+Other things:
+Push notifications 
+Calendar
+Facebook Login, Google Login
+Fingerprint/FaceID
+...
+
+
+
+
+

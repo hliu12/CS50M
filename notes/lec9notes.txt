@@ -1,0 +1,106 @@
+Lecture 9 - Redux
+CS50 Mobile
+
+Scaling Complexity - Its very easy to do stuff wrong
+and many problems that we can run into when developing
+
+Even FB had trouble with this with their MVC model
+
+Solution: Flux
+Dispatchers send information to stores in a one way
+data flow. Actions trigger dispatchers and views 
+take data from stores. This way, views can not 
+update stores and the data all flows one way.
+
+Redux
+Inspired by flux, is a data management library
+One big store to keep track of all of your app's state
+Updates are made using pure functions
+No side effects (printing, ect.)
+
+Reducer - Updater function
+Takes previous state and applies update
+Should be pure function, immutable
+Ex:
+const reducer = (state, update) => {//do update things}
+
+Store - maintains state
+uses getState() to get state
+Can only be updated by dispatch()
+Can have callbacks when state is updated
+
+class Store {
+    constructor(reducer, initialState) {
+        this.reducer = reducer
+        this.state = initialState
+    }
+
+    getState() {
+        return this.state
+    }
+
+    dispatch(update) {
+        this.state = this.reducer(this.state, update)
+    }
+}
+
+Redux standard actions have a type and payload
+Type specifies what kind of action to take while
+payload is the actual info for the update
+
+With this action structure, the reducer takes
+a state and an action rather than an update
+and updates the state according to the action
+type. This way, seperate parts of state can 
+be manipulated. 
+
+Helper functions can be used to clean up dispatch
+calls to the store. 
+Ex:
+const updateUser = update => ({
+    type: UPDATE_USER,
+    payload: update
+})
+
+store.dispatch(updateUser({foo: 'bar'}))
+
+Instead of having the main reducer decide which 
+mini reducer to call based on an action, we can
+send the action to all the reducers and have the
+mini reducers to respond to only the action types
+they care about. This helps with scalability in the 
+long run.
+Ex: 
+
+reducer(state, action) => ({
+    user: userReducer(state.user, action),
+    contacts: contactReducer(state.contacts, action),
+})
+
+Actually using Redux: 
+
+import {createStore, combineReducers} from 'redux' // Creates store class
+const store = createStore(reducer, DEFAULT_STATE)
+const reducer = combineReducers({
+    user: userReducer,
+    contacts: contactReducer,
+})
+
+Once Redux is used, we can clean up the code and 
+create some new files: actions.js and reducer.js
+
+By using combineReducers, we can create multiple
+reducers to handle smaller parts of a state if 
+the app scale requires it.
+
+Ex:
+const reducer = combineReducers({
+    user: combineReducers({
+        meta: userMetaReducer,
+        logins: userLoginReducer,
+    }),
+    contacts: contactReducer,
+})
+
+<Provider store={store}> and connect(...) from Redux API
+helps to automate a lot of Redux operations

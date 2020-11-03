@@ -12,7 +12,7 @@ const addKeyToContact = (obj, key) => ({key: key, ...obj})
 
 ... passes all key value pairs of an object
 
-Can use state {} instead of making a constructor just to create states
+Can use state = {} instead of making a constructor just to create states
 
 The map function takes an array and a function and runs the function
 on every member of the array, returning the result of the function ran
