@@ -1,0 +1,54 @@
+Lecture 11 - Performance
+CS50 Mobile
+
+Performance optimization often comes at the
+cost of complexity and is often not worth it
+
+Should only seek to optimize performance when
+a bottleneck is found
+
+Chrome flamechart and react debugger are both
+good tools 
+
+Common optimizations: 
+Rerendering too often
+Unnecessarily Changing Props
+
+Rerendering too often
+Often happens when unusued props are changed
+Redux or using keys is a good solution to 
+this problem 
+React.PureComponent is also very good since
+it has a ComponentWillUpdate() that does a
+shallow diff and only updates the component
+when the props change
+
+Unnecessarily Changing Props
+
+Things to watch out for: 
+inline styling - recreates a style object every
+time component is rendered
+function literals - creates a new function
+reference every render
+
+Pomo Timer with loading bar -
+rendering so often is very costly on both the
+JS thread and the UI thread, blockage on the
+JS thread makes the bar jittery
+
+Can fix this with Animated (from react-native)
+First, declare percentage with Animated.Value(0)
+this.animation = Animated.timing(
+this.state.percentage,'
+//config
+{
+  toValue: 100,
+  duration: this.props.timeRemaining,
+  easing: Easing.linear
+  useNativeDriver: true,
+},
+)
+
+However, animated can not affect the layout
+props, we have to use transform and 
+Animated.View

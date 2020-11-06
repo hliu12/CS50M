@@ -1,0 +1,34 @@
+Lecture 10 - Async Redux
+CS50 Mobile
+
+connect(mapStateToProps, mapDispatchToProps)(Screen)
+
+mapStateToProps: Function that takes the state of the store and 
+returns the necessary key value pairs that the screen needs
+Ex: 
+mapStateToProps = state => ({
+    contacts: state.contacts
+})
+
+In the screen class, contacts can then be accessed through:
+this.props.contacts
+
+mapDispatchToProps: Function that takes an object of key value pairs
+where the values are function and binds the function to dispatch()
+so that they can change the state in the store without having 
+to import store on every screen that wants to do so.
+Ex: 
+connect(null, {addContacts: addContacts})(Screen)
+// addContacts is a function that adds contacts to the contacts state
+
+In the screen class, the function can be called with: 
+this.props.addContacts(params)
+
+store.dispatch needs to be able to handle things other than just simple
+actions to account for async actions
+
+React Redux middleware allows actions to be delayed before beings sent 
+into the reducer. We can check the type of the action and perform
+async actions here before we contact the reducer
+
+redux-thunk is a library that was created to do exactly this.
