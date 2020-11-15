@@ -1,0 +1,43 @@
+Lecture 12 - Deploying and Testing
+CS50 Mobile
+
+Testing Pyramid
+Unit test - single class/function test
+Integration/Service test - test multiple pieces of code independent of UI
+UI/End-to-end tests - Tests a feature thoroughly
+
+Testing frameworks are better than manually
+written testing function since they can run
+many testing functions simutaneously and give
+prettier outputs
+
+Jest - testing framework by Facebook
+checks all .test.js files
+uses this syntax:
+test("describe the test here", () => {
+ expect([recieved]).toBe(expected)
+}
+
+using .toEqual checks key value pairs instead of 
+a hard ===, which checks object reference only
+should use on for objects that shouldn't change
+
+we can use .toMatchSnapshot() to save snapshots
+of functions and only see when the snapshots are
+changed in some way. This is good for when 
+objects change, as snapshots can be updated.
+
+can use describe("Describe group of tests", () => {
+  it("test description", () => {//Test stuff}
+
+Jest supports mock functions - jest.fn()
+mockFunction.mock.calls shows the calls that the mock function made
+
+Jest expo can also ensure that React Components are rendered 
+correctly
+
+jest --verbose --coverage
+shows testing coverage over an app
+
+Detox by Wix is doing end to end testing for react native
+not fully done yet - needs more android support
